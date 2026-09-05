@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notas</title>
+  <link rel="stylesheet" href="notes.css" />
+</head>
+<body class="notes-body">
+  <header class="notes-topbar">
+    <h1>
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+      Notas
+    </h1>
+    <button id="new-note" class="btn-new" title="Nueva nota">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Nueva nota
+    </button>
+  </header>
+
+  <div class="notes-search">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input id="search" type="text" placeholder="Buscar notas" />
+  </div>
+
+  <ul id="note-list" class="note-list"></ul>
+
+  <div id="empty" class="notes-empty" hidden>
+    <svg viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    <p>No hay notas todavía</p>
+    <span>Crea una con “Nueva nota”. Cada nota se abre en su propia ventana.</span>
+  </div>
+
+  <p class="notes-hint">Haz clic en una nota para abrirla en una ventana nueva.</p>
+
+  <script src="notes-store.js"></script>
+  <script src="notes.js"></script>
+</body>
+</html>
