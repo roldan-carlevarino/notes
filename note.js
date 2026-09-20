@@ -24,9 +24,10 @@ function applyColor(color) {
 
 function paintMeta() {
   const d = new Date(note.updated);
-  $meta.textContent = "Editado " + d.toLocaleString("es-ES",
+  $meta.textContent = currentProfile + " · Editado " + d.toLocaleString("es-ES",
     { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
-  document.title = (note.title || note.body.split("\n")[0] || "Nota").slice(0, 40) || "Nota";
+  document.title = `[${currentProfile}] ` +
+    ((note.title || note.body.split("\n")[0] || "Nota").slice(0, 40) || "Nota");
 }
 
 // Initial paint

@@ -30,6 +30,17 @@ button { font-family: inherit; cursor: pointer; }
 }
 .btn-new:hover { background: #1b4fa8; }
 
+.profile-tabs {
+  display: flex; gap: 6px; padding: 12px 22px 0; flex-wrap: wrap;
+}
+.profile-tab {
+  border: 1px solid var(--line); background: #fff; color: var(--text-soft);
+  padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+  transition: background .12s, color .12s, border-color .12s;
+}
+.profile-tab:hover { border-color: var(--accent); color: var(--accent); }
+.profile-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
 .notes-search {
   display: flex; align-items: center; gap: 8px;
   margin: 16px 22px 4px; padding: 9px 12px;

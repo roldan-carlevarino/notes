@@ -108,8 +108,29 @@ document.getElementById("search").addEventListener("input", (e) => {
   render();
 });
 
-// Live updates from note windows
-if (notesChannel) notesChannel.onmessage = () => render();
-window.addEventListener("storage", (e) => { if (e.key === NOTES_KEY) render(); });
+function renderProfiles() {
+  const tabs = document.getElementById("profile-tabs");
+  tabs.innerHTML = PROFILES.map(p => `
+    <button class="profile-tab${p === currentProfile ? " active" : ""}" data-profile="${escapeHtml(p)}">
+      ${escapeHtml(p)}
+    </button>`).join("");
+  tabs.querySelectorAll(".profile-tab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.profile === currentProfile) return;
+      setActiveProfile(btn.dataset.profile);
+      searchTerm = "";
+      document.getElementById("search").value = "";
+      renderProfiles();
+      render();
+    });
+  });
+}
 
+// Live updates from note windows (only for the active profile)
+if (notesChannel) notesChannel.onmessage = (ev) => {
+  if (!ev.data || ev.data.profile === currentProfile) render();
+};
+window.addEventListener("storage", (e) => { if (e.key === notesKey(currentProfile)) render(); });
+
+renderProfiles();
 render();
