@@ -38,6 +38,11 @@ button { font-family: inherit; cursor: pointer; }
 .notes-search input { border: none; outline: none; flex: 1; font-size: 14px; background: transparent; color: var(--text); }
 
 .note-list { list-style: none; margin: 10px 14px; padding: 0; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.note-group-header {
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+  color: var(--text-soft); padding: 8px 4px 2px; margin-top: 4px;
+}
+.note-group-header:first-child { margin-top: 0; }
 .note-item {
   display: flex; align-items: stretch; gap: 12px;
   padding: 12px 14px; border-radius: 10px; background: #fff;

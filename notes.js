@@ -21,6 +21,24 @@ function titleOf(note) {
     || "Nueva nota";
 }
 
+function dayKey(ts) {
+  const d = new Date(ts);
+  return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+}
+
+function dayLabel(ts) {
+  const d = new Date(ts);
+  const today = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(today.getDate() - 1);
+  if (d.toDateString() === today.toDateString()) return "Hoy";
+  if (d.toDateString() === yesterday.toDateString()) return "Ayer";
+  return d.toLocaleDateString("es-ES", {
+    weekday: "long", day: "numeric", month: "long",
+    year: d.getFullYear() === today.getFullYear() ? undefined : "numeric",
+  });
+}
+
 function render() {
   const list = document.getElementById("note-list");
   const notes = loadNotes()
@@ -28,11 +46,24 @@ function render() {
       if (!searchTerm) return true;
       return (n.title + " " + n.body).toLowerCase().includes(searchTerm);
     })
-    .sort((a, b) => b.updated - a.updated);
+    .sort((a, b) => b.created - a.created);
 
   document.getElementById("empty").hidden = loadNotes().length !== 0;
 
-  list.innerHTML = notes.map(n => `
+  const groups = [];
+  let current = null;
+  for (const n of notes) {
+    const key = dayKey(n.created);
+    if (!current || current.key !== key) {
+      current = { key, created: n.created, notes: [] };
+      groups.push(current);
+    }
+    current.notes.push(n);
+  }
+
+  list.innerHTML = groups.map(g => `
+    <li class="note-group-header">${escapeHtml(dayLabel(g.created))}</li>
+    ${g.notes.map(n => `
     <li class="note-item" data-id="${n.id}" style="--accent:${NOTE_COLORS[n.color] || NOTE_COLORS.yellow}">
       <span class="note-swatch"></span>
       <div class="note-item-main">
@@ -45,7 +76,7 @@ function render() {
       <button class="note-item-del" title="Eliminar">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
       </button>
-    </li>`).join("");
+    </li>`).join("")}`).join("");
 
   list.querySelectorAll(".note-item").forEach(el => {
     const id = el.dataset.id;
