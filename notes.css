@@ -23,6 +23,30 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0; font-size: 20px; display: flex; align-items: center; gap: 10px;
   color: #b8860b;
 }
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
+.account-label { color: var(--text-soft); font-size: 13px; }
+.btn-secondary {
+  border: 1px solid var(--line); background: #fff; color: var(--text);
+  padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 600;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+.auth-panel {
+  width: min(420px, calc(100% - 32px)); margin: 56px auto; padding: 24px;
+  border: 1px solid var(--line); border-radius: 8px; background: #fff;
+}
+.auth-panel h2 { margin: 0 0 18px; font-size: 18px; }
+.auth-panel form { display: grid; gap: 14px; }
+.auth-panel label { display: grid; gap: 6px; color: var(--text-soft); font-size: 13px; }
+.auth-panel input {
+  min-height: 38px; padding: 8px 10px; border: 1px solid var(--line);
+  border-radius: 6px; color: var(--text); font: inherit;
+}
+.auth-panel .btn-new { justify-content: center; min-height: 38px; }
+.status-message { min-height: 18px; margin: 8px 0 0; color: var(--text-soft); font-size: 13px; }
+.error-message { margin: 0 14px 12px; color: #a4262c; }
+.migration-tools { margin: 12px 22px 0; }
+.migration-uncertain { margin: 4px 0; padding-left: 20px; color: #8a4b08; font-size: 13px; }
+.migration-uncertain button { margin-left: 8px; }
 .btn-new {
   display: inline-flex; align-items: center; gap: 7px;
   background: var(--accent); color: #fff; border: none;
@@ -103,6 +127,9 @@ button { font-family: inherit; cursor: pointer; }
 .icon-btn { border: none; background: transparent; padding: 5px; border-radius: 6px; color: rgba(0,0,0,.55); display: grid; place-items: center; }
 .icon-btn:hover { background: rgba(0,0,0,.08); }
 .icon-btn.danger:hover { background: rgba(192,57,43,.15); color: #a4262c; }
+.note-title:disabled, .note-body:disabled { cursor: not-allowed; }
+.note-toolbar .saved-state { max-width: min(42vw, 280px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.retry-save { padding: 5px 8px; font-size: 11px; }
 
 .note-title {
   border: none; background: transparent; outline: none;

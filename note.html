@@ -16,7 +16,9 @@
       <button class="dot" data-color="gray" style="--c:#e9e9e9" title="Gris"></button>
     </div>
     <div class="note-actions">
-      <span id="saved-state" class="saved-state">Guardado</span>
+      <span id="saved-state" class="saved-state">Conectando…</span>
+      <span id="editor-session-state" class="saved-state" role="status"></span>
+      <button id="retry-save" class="btn-secondary retry-save" hidden>Reintentar</button>
       <button id="delete-note" class="icon-btn danger" title="Eliminar nota">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
       </button>
@@ -27,6 +29,7 @@
   <textarea id="note-body" class="note-body" placeholder="Escribe aquí…"></textarea>
   <footer class="note-footer"><span id="note-meta"></span></footer>
 
+  <script src="api-config.js"></script>
   <script src="notes-store.js"></script>
   <script src="note.js"></script>
 </body>
